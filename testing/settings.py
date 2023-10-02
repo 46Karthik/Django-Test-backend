@@ -99,16 +99,16 @@ CORS_ORIGIN_WHITELIST = [
 #     }
 # }
 
-# DATABASES = {
-#   'default': {
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': 'neondb',
-#     'USER': 'karthikfoul66',
-#     'PASSWORD': '8dT9iegybxma',
-#     'HOST': 'ep-square-star-77193973.us-east-1.aws.neon.tech',
-#     'PORT': '5432',
-#   }
-# }
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'neondb',
+    'USER': 'karthikfoul66',
+    'PASSWORD': '8dT9iegybxma',
+    'HOST': 'ep-square-star-77193973.us-east-1.aws.neon.tech',
+    'PORT': '5432',
+  }
+}
 
 # DATABASES = {
 #     'default': {
