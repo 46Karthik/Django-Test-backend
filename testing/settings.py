@@ -110,16 +110,16 @@ CORS_ORIGIN_WHITELIST = [
 #   }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'oHb83v0t1T99YlQz0KFF',
-        'HOST': 'containers-us-west-146.railway.app',
-        'PORT': '5897',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'oHb83v0t1T99YlQz0KFF',
+#         'HOST': 'containers-us-west-146.railway.app',
+#         'PORT': '5897',
+#     }
+# }
 
 
 # Password validation
