@@ -3,11 +3,14 @@ from django.db import models
 # Create your models here.
 
 class User(models.Model):
-    # id = models.AutoField(db_column="ID",primary_key=True)
-    name = models.CharField(max_length=100)
-    
-    def _str_(self):
-        return name
+    id = models.BigAutoField(primary_key=True)
+    userid = models.CharField(unique=True,max_length=255)
+    apikey= models.CharField(unique=True, max_length=500)
+    # def _str_(self):
+    #     return name
+    class Meta:
+        managed = False
+        db_table = 'user_user'
 
 class Profile(models.Model):
     id = models.BigAutoField(primary_key=True)
