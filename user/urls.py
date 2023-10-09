@@ -1,13 +1,14 @@
 from django.urls import path,re_path
-from . import views,profile
+from . import views,profile,test
 
 
 urlpatterns = [
-    path('', views.UserCreate.as_view(), name='user-create'), 
+    path('', views.login, name='user-create'), 
     path('id/<int:userid>/', views.apidetails, name='apidetails'),
     path('example/<str:api_key>/', views.example_view, name='example'),
     path('profile/', profile.profile, name='profile'),
     path('profile/<str:username>/', profile.profile, name='profile-detail'),
+    path('name/', test.test, name='test'),
     
 
     # re_path(r'^userdetail/$', views.example_view, name='example'),

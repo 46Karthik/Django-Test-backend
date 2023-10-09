@@ -6,7 +6,17 @@ from .serializers import UserSerializer,profileSerializer
 from rest_framework.decorators import api_view
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+# from .index.html improt finaldata
 import secrets
+@api_view(["GET"])
+def login(request):
+    if request.method =="GET":
+        # finaldata = "This is the data I want to pass to the template."
+        # context = {
+        # 'finaldata': finaldata,
+        #  }
+      return render(request, 'loginpage.html')
 
 def generate_api_key(length=32):
     secrets_api_key = secrets.token_hex(length)
