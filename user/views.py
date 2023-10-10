@@ -6,7 +6,7 @@ from .serializers import UserSerializer,profileSerializer
 from rest_framework.decorators import api_view
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 # from .index.html improt finaldata
 import secrets
 @api_view(["GET"])
@@ -17,6 +17,33 @@ def login(request):
         # 'finaldata': finaldata,
         #  }
       return render(request, 'loginpage.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print(username,"found")
+        print(password,"found")
+        # Perform authentication or other processing with username and password here
+        if username:
+            getusername =get_object_or_404(Profile,username=username)
+            userinfo =profileSerializer(getusername).data
+            user_name_in_db =userinfo.get("username")
+            user_pass_in_db =userinfo.get("password")
+            # print(user_name_in_db,user_pass_in_db)
+        if username == user_name_in_db and password == user_pass_in_db:
+            request.session['username'] = 'auth01'
+            stored_value = request.session.get('username')
+            # Authentication successful, you can redirect the user to a different page
+            print(stored_value,"trueeeeeeeeeeeee")
+            return redirect('name/')
+        else:
+            # Authentication failed, you can set an error message
+            error_message = 'Invalid username or password'
+            return render(request, 'loginpage.html', {'error_message': error_message})
+    else:
+        # Handle GET request (display the login form)
+        return render(request, 'loginpage.html')
 
 def generate_api_key(length=32):
     secrets_api_key = secrets.token_hex(length)

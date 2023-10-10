@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404,redirect
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import profileSerializer
@@ -7,7 +7,10 @@ from rest_framework import status
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def profile(request, username=None):
-    if request.method == 'GET':
+    stored_value = request.session.get('username')
+    if stored_value:
+       if request.method == 'GET':
+        print(stored_value,"profile")
         if username:
             # Retrieve data for a specific user by username
             profile = get_object_or_404(Profile, username=username)
@@ -18,7 +21,7 @@ def profile(request, username=None):
             serializer = profileSerializer(profiles, many=True)
         return Response(serializer.data)
 
-    elif request.method == 'POST':
+       elif request.method == 'POST':
         # Handle POST request to create new data
         serializer = profileSerializer(data=request.data)
         if serializer.is_valid():
@@ -26,7 +29,7 @@ def profile(request, username=None):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == 'PUT':
+       elif request.method == 'PUT':
         # Handle PUT request to update the profile
         if username:
             profile = get_object_or_404(Profile, username=username)
@@ -38,7 +41,7 @@ def profile(request, username=None):
         else:
             return Response({"error": "Username not provided."}, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == 'DELETE':
+       elif request.method == 'DELETE':
         # Handle DELETE request to delete the profile
         if username:
             profile = get_object_or_404(Profile, username=username)
@@ -46,3 +49,5 @@ def profile(request, username=None):
             return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return Response({"error": "Username not provided."}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return redirect('login')

@@ -8,7 +8,8 @@ urlpatterns = [
     path('example/<str:api_key>/', views.example_view, name='example'),
     path('profile/', profile.profile, name='profile'),
     path('profile/<str:username>/', profile.profile, name='profile-detail'),
-    path('name/', test.test, name='test'),
+    path('login/name/', test.test, name='test'),
+    path('login/', views.login_view, name='login'),
     
 
     # re_path(r'^userdetail/$', views.example_view, name='example'),
