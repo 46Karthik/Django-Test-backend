@@ -1,5 +1,5 @@
 from django.urls import path,re_path
-from . import views,profile,test
+from . import views,profile,test,song
 
 
 urlpatterns = [
@@ -10,6 +10,7 @@ urlpatterns = [
     path('profile/<str:username>/', profile.profile, name='profile-detail'),
     path('login/name/', test.test, name='test'),
     path('login/', views.login_view, name='login'),
+    path('songstore/', song.storesong, name='login'),
     
 
     # re_path(r'^userdetail/$', views.example_view, name='example'),

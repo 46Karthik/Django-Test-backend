@@ -25,3 +25,11 @@ class Profile(models.Model):
     class Meta:
         managed = False
         db_table = 'profile'
+
+class Storesong(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    song = models.CharField(unique=True, max_length=255)
+   
+    class Meta:
+        managed = False
+        db_table = 'storesong'
